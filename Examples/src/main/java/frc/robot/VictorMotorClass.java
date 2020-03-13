@@ -3,7 +3,7 @@ package frc.robot;//Required for all
 import edu.wpi.first.wpilibj.SpeedControllerGroup;//required for combining 2 motors, *Motors do not have to combined*
 import edu.wpi.first.wpilibj.Victor;//Required for all victor motors
 
-public class Victors{
+public class VictorMotorClass{
     private Victor m_shooterLeft;//Declare each motor individually
     private Victor m_shooterRight;
     private SpeedControllerGroup m_shooter;//Then declare an object for both
@@ -14,7 +14,7 @@ public class Victors{
         m_shooter = new SpeedControllerGroup(m_shooterLeft, m_shooterRight);//All methods will now be used with this object
         m_shooter.setInverted(true);//call if the motor is on backwards, sometimes happens
     }
-    public void fullPower(){
+    public void setFullPower(){
         m_shooter.set(1);//Range from -1 to 1, which eqauls 100% power backwards to 100% power forwards
     }
     public void killMotor(){
