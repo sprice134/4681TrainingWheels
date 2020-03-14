@@ -37,7 +37,8 @@ public class Robot extends TimedRobot {
   private DifferentialDrive m_drive;//Will be used for all driving methods
   private ServoMotorClass m_servo;
   private TalonMotorClass m_winch;
-  private Cameras m_cameras;
+  private CamerasClass m_cameras;
+  private LidarClass m_lidar;
 
   
   
@@ -56,8 +57,10 @@ public class Robot extends TimedRobot {
     m_servo.servoMotorInit();//Always run the init for EVERY object you create
     m_winch = new TalonMotorClass();
     m_winch.talonMotorClassInit();
-    m_cameras = new Cameras();
-    m_cameras.camerasInit();
+    m_cameras = new CamerasClass();
+    m_cameras.camerasClassInit();
+    m_lidar = new LidarClass();
+    m_lidar.lidarClassInit();
     
   }
 
@@ -84,7 +87,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     //All code for teleop will be run through this method, including calling other classes and mehtods
     //This code is called every .02 seconds. So 50 cycles every second
-    
+    System.out.print(m_lidar.getDistance());
     
     //Method 1 of driving
     //if only 2 doubles with no boolean, both values will be squared so .5 is actually .25   gives an acceleration curve
