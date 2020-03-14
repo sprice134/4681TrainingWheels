@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
   private DifferentialDrive m_drive;//Will be used for all driving methods
   private ServoMotorClass m_servo;
   private TalonMotorClass m_winch;
+  private Cameras m_cameras;
 
   
   
@@ -45,8 +46,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     //Declare each here with port number on roborio
     m_stick = new Joystick(0);//port #, can be seen in driver station
-    CameraServer.getInstance().startAutomaticCapture("Front", 0);//0,1 refer to usb ports on usb. Camera is now accessible in driverstation
-    CameraServer.getInstance().startAutomaticCapture("Back", 1);
+    
     m_leftWheel = new Victor(2);//Declare each motor seperately similar to speed controller
     m_rightWheel = new Victor(3);
     m_drive = new DifferentialDrive(m_leftWheel, m_rightWheel);//Combines wheels into one object
@@ -55,6 +55,10 @@ public class Robot extends TimedRobot {
     m_servo = new ServoMotorClass();
     m_servo.servoMotorInit();//Always run the init for EVERY object you create
     m_winch = new TalonMotorClass();
+    m_winch.talonMotorClassInit();
+    m_cameras = new Cameras();
+    m_cameras.camerasInit();
+    
   }
 
 
