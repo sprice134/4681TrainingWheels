@@ -7,6 +7,10 @@
 
 package frc.robot;//Required always
 
+
+//Check VendorReps folder in this repository, if you are planning on using talons, gyro, or color sensor, you need a vendor download
+
+
 import edu.wpi.first.wpilibj.TimedRobot;//Required always
 import edu.wpi.first.wpilibj.Joystick;//Used for remotes
 import edu.wpi.first.wpilibj.Victor;//Used for regular motors
@@ -15,13 +19,12 @@ import edu.wpi.first.wpilibj.Counter;// Required for a Lidar Sensor
 import edu.wpi.first.cameraserver.CameraServer;//Required for cameras
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;//Creates smartdashboard, Smartdashboard is not required however
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;//Used to have different auto strategies and picking at driver station
-//Uncomment the two underneath, they require CTRE Pheonix which does not run on a mac
-//import com.ctre.phoenix.motorcontrol.ControlMode;//Required for talons, also needs vendor download
-//import com.ctre.phoenix.motorcontrol.can.TalonSRX; 
 import edu.wpi.first.wpilibj.DigitalInput;//Used for switches and other sensors
 import edu.wpi.first.networktables.*;//How the limelight interacts with the roborio
 import edu.wpi.first.wpilibj.SpeedControllerGroup;//Controls multiple motors in tandem
 import edu.wpi.first.wpilibj.Compressor;//required if there are pneumatics on the robot
+import com.ctre.phoenix.motorcontrol.ControlMode;//Required for talons, also needs vendor download into vendorReps folder
+import com.ctre.phoenix.motorcontrol.can.TalonSRX; 
 
 
 
@@ -33,6 +36,7 @@ public class Robot extends TimedRobot {
   private Victor m_rightWheel;
   private DifferentialDrive m_drive;//Will be used for all driving methods
   private ServoMotorClass m_servo;
+  private TalonMotorClass m_winch;
 
   
   
@@ -50,6 +54,7 @@ public class Robot extends TimedRobot {
     m_shooter.victorsInit();//Always run the init for EVERY object you create
     m_servo = new ServoMotorClass();
     m_servo.servoMotorInit();//Always run the init for EVERY object you create
+    m_winch = new TalonMotorClass();
   }
 
 
@@ -94,17 +99,13 @@ public class Robot extends TimedRobot {
       m_shooter.setFullPower();
     }
 
-
     if (m_stick.getRawButton(2)){//getRawButton is true whenever the button is pressed, regardless of how long it has been pressed
       m_shooter.killMotor();
     }
 
-
     if (m_stick.getRawButton(1) && m_stick.getRawButtonReleased(2)){//buttonReleased is only true when the button is pressed and then released, no other time
       System.out.println(m_shooter.getSpeed());
     }
-
-
 
     if (m_stick.getRawButton(3)){
       m_servo.halfTurn();
@@ -113,6 +114,11 @@ public class Robot extends TimedRobot {
       m_servo.reset();
       System.out.println(m_servo.getTurn());
     }
+
+    if (m_stick.getRawButtonPressed(4)){
+      m_winch.goToEncoderPoint(40000);
+    }
+
 
 
 
