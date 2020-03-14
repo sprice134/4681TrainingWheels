@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
   private SensorCameraClass m_cameras;
   private SensorLidarClass m_lidar;
   private PnuematicCompressorClass m_compressor;
+  private PnuematicSolenoidClass m_arm;//Does not need to be same name as sample class, I just ran out of names for things
 
   
   
@@ -66,6 +67,8 @@ public class Robot extends TimedRobot {
     m_lidar.lidarClassInit();
     m_compressor = new PnuematicCompressorClass();
     m_compressor.compressorClassInit();
+    m_arm = new PnuematicSolenoidClass();
+    m_arm.solenoidClassInit();
   }
 
 
@@ -128,6 +131,13 @@ public class Robot extends TimedRobot {
 
     if (m_stick.getRawButtonPressed(4)){
       m_winch.goToEncoderPoint(40000);
+    }
+    if (m_stick.getPOV() == 90){//POV is the arrow pad on a remote. 0 is right, 90 is up, 180 is left, 270 is down
+      //In POV, you can technically use 45, 135, 225 and 315 but I do not recommend it as they are hard to press
+      m_arm.extend();
+    }
+    else if (m_stick.getPOV() == 270){
+      m_arm.retract();
     }
 
 
