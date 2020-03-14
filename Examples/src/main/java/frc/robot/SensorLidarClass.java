@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.Counter;// Required for a Lidar Sensor
 
 
 
-public class LidarClass{
+public class SensorLidarClass{
     private Counter lidar;//Counter is what the lidar system is called in the WPI Library
 
     public void lidarClassInit(){

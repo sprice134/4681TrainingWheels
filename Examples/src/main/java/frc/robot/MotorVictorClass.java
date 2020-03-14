@@ -3,7 +3,7 @@ package frc.robot;//Required for all
 import edu.wpi.first.wpilibj.SpeedControllerGroup;//required for combining 2 motors, *Motors do not have to combined*
 import edu.wpi.first.wpilibj.Victor;//Required for all victor motors
 
-public class VictorMotorClass{
+public class MotorVictorClass{
     private Victor m_shooterLeft;//Declare each motor individually
     private Victor m_shooterRight;
     private SpeedControllerGroup m_shooter;//Then declare an object for both

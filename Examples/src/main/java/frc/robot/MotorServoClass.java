@@ -2,7 +2,7 @@ package frc.robot;//Mandatory for all files
 
 import edu.wpi.first.wpilibj.Servo;//only import needed
 
-public class ServoMotorClass{
+public class MotorServoClass{
     private Servo m_servo;
     
 

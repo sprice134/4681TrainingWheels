@@ -31,14 +31,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class Robot extends TimedRobot {
   //Always create variables here, that way they are globally accessible in both Auto and tele
   private Joystick m_stick;//Remote
-  private VictorMotorClass m_shooter;//Refers to the class i made, not the motor. Usually would be named shooters, wheels, etc
+  private MotorVictorClass m_shooter;//Refers to the class i made, not the motor. Usually would be named shooters, wheels, etc
   private Victor m_leftWheel;//Refers to motors now, not class
   private Victor m_rightWheel;
   private DifferentialDrive m_drive;//Will be used for all driving methods
-  private ServoMotorClass m_servo;
-  private TalonMotorClass m_winch;
-  private CamerasClass m_cameras;
-  private LidarClass m_lidar;
+  private MotorServoClass m_servo;
+  private MotorTalonClass m_winch;
+  private SensorCameraClass m_cameras;
+  private SensorLidarClass m_lidar;
 
   
   
@@ -51,15 +51,15 @@ public class Robot extends TimedRobot {
     m_leftWheel = new Victor(2);//Declare each motor seperately similar to speed controller
     m_rightWheel = new Victor(3);
     m_drive = new DifferentialDrive(m_leftWheel, m_rightWheel);//Combines wheels into one object
-    m_shooter = new VictorMotorClass();//Declare it here
+    m_shooter = new MotorVictorClass();//Declare it here
     m_shooter.victorsInit();//Always run the init for EVERY object you create
-    m_servo = new ServoMotorClass();
+    m_servo = new MotorServoClass();
     m_servo.servoMotorInit();//Always run the init for EVERY object you create
-    m_winch = new TalonMotorClass();
+    m_winch = new MotorTalonClass();
     m_winch.talonMotorClassInit();
-    m_cameras = new CamerasClass();
+    m_cameras = new SensorCameraClass();
     m_cameras.camerasClassInit();
-    m_lidar = new LidarClass();
+    m_lidar = new SensorLidarClass();
     m_lidar.lidarClassInit();
     
   }

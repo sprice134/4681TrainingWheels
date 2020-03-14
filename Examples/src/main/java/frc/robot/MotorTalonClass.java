@@ -4,7 +4,7 @@ package frc.robot;//Mandatory for all files
 import com.ctre.phoenix.motorcontrol.ControlMode;//Required for talons, also needs vendor download into vendorReps folder
 import com.ctre.phoenix.motorcontrol.can.TalonSRX; 
 
-public class TalonMotorClass{
+public class MotorTalonClass{
     private TalonSRX m_motor;//always declare globally outside of init
 
     public void talonMotorClassInit(){
