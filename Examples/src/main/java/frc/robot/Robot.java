@@ -39,6 +39,7 @@ public class Robot extends TimedRobot {
   private MotorTalonClass m_winch;
   private SensorCameraClass m_cameras;
   private SensorLidarClass m_lidar;
+  private PnuematicCompressorClass m_compressor;
 
   
   
@@ -46,8 +47,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     //Declare each here with port number on roborio
+    //Quick note: While it is good to have stuff in its own class, not every object needs to be in its own class
+    //Each of these is in its own class to make things easily findable and sortable
     m_stick = new Joystick(0);//port #, can be seen in driver station
-    
+    //To figure out which button is being pressed, you can look in the driver station under remotes and it illiminates which button is pressed
     m_leftWheel = new Victor(2);//Declare each motor seperately similar to speed controller
     m_rightWheel = new Victor(3);
     m_drive = new DifferentialDrive(m_leftWheel, m_rightWheel);//Combines wheels into one object
@@ -61,7 +64,8 @@ public class Robot extends TimedRobot {
     m_cameras.camerasClassInit();
     m_lidar = new SensorLidarClass();
     m_lidar.lidarClassInit();
-    
+    m_compressor = new PnuematicCompressorClass();
+    m_compressor.compressorClassInit();
   }
 
 

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;//required if there are pneumatics on th
 
 //QUICK NOTE: As this is really really simple, I would keep it in just the robot class
 //This is only getting its on class for the sake of consistency and organization
-public class PneumaticCompressorClass{
+public class PnuematicCompressorClass{
     private Compressor m_compressor;
 
     public void compressorClassInit(){
